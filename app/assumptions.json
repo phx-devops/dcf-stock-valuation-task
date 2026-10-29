@@ -1,0 +1,41 @@
+{
+  "wacc": {
+    "risk_free_rate": 0.05,
+    "equity_risk_premium": 0.03,
+    "beta": 1.1,
+    "pre_tax_cost_of_debt": 0.045,
+    "capital_structure_source": "10-Q",
+    "exclude_operating_leases_from_debt": true
+  },
+  "forecast": {
+    "explicit_forecast_years": 10,
+    "revenue_growth_start": "3-year historical CAGR",
+    "revenue_growth_fade": "equal steps to terminal rate by year 10",
+    "ebit_margin": "3-year average",
+    "tax_rate": "3-year average",
+    "d_and_a": "3-year average",
+    "capex": "3-year average",
+    "nwc": "3-year average"
+  },
+  "base_period": "LTM (latest 10-K year plus current 10-Q year-to-date, minus prior-year 10-Q year-to-date)",
+  "terminal_value": {
+    "method": "Gordon growth",
+    "growth_rate": 0.025,
+    "timing": "end of year 10",
+    "discount_factor": "year-10"
+  },
+  "bridge": {
+    "equity_value": "EV + cash - debt",
+    "cash_and_debt_source": "latest 10-K balance sheet",
+    "diluted_shares_source": "10-Q"
+  },
+  "tolerances": {
+    "extraction": "exact match",
+    "wacc": "within 10 bps",
+    "model_outputs": "within ±1%"
+  },
+  "market_price": {
+    "source": "market_data.json",
+    "affects_pass_fail": false
+  }
+}
