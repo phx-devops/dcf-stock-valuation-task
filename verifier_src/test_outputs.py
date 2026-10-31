@@ -162,7 +162,9 @@ def raw_assumptions():
 
 @pytest.fixture(scope="session")
 def market():
-    return json.loads((APP / "market_data.json").read_text())
+    d = json.loads((APP / "market_data.json").read_text())
+    d["price"] = d["last_price"] if "last_price" in d else d["price"]  # documented key: last_price
+    return d
 
 
 @pytest.fixture(scope="session")
@@ -172,7 +174,7 @@ def base_assump(raw_assumptions):
 
 @pytest.fixture(scope="session")
 def ref_model(gtv, base_assump, market):
-    return rm.model_from(gtv, base_assump, market["last_price"])
+    return rm.model_from(gtv, base_assump, market["price"])
 
 
 @pytest.fixture(scope="session")
@@ -297,6 +299,9 @@ def test_V10_inputs_schema(inputs_table):
     assert not dups, f"duplicate ids: {dups}"
     missing = [i for i in rm.required_ids() if i not in rows]
     assert not missing, f"missing ids: {missing}"
+    canonical = set(rm.required_ids())
+    extra = [i for i in rows if i not in canonical]
+    assert not extra, f"unexpected ids: {extra}"
 
 
 @pytest.mark.parametrize("input_id", rm.required_ids())
@@ -342,7 +347,9 @@ def test_V13_cited_page_contains_value(input_id, inputs_table, gt, gtv):
     page = row["page"]
     assert isinstance(page, (int, float)) and float(page).is_integer() and page >= 1, \
         f"{input_id}: page must be a 1-based integer"
-    text = _page_text(APP / "filings" / row["source"], int(page))
+    text = _page_text(APP / "filings" / row["source"], int(page))  # raises if the page does not exist
+    if gtv[input_id] == 0:
+        return  # a line that is not presented (notes_payable) has no printed number: only the page must exist
     assert any(re.search(r"(?<![\d,.])" + re.escape(f) + r"(?![\d,]|\.\d)", text)
                for f in _printed_forms(gtv[input_id])), \
         f"{input_id}: value {gtv[input_id]} not found on page {int(page)} of {row['source']}"
@@ -363,7 +370,7 @@ def test_V14_diag_page_is_primary_statement(inputs_table, gt):
 def test_V20_assumptions_sheet_matches_json(base_assump, market):
     ws = load_workbook(XLSX, data_only=False)["Assumptions"]
     sheet = {ws.cell(r, 1).value: ws.cell(r, 2).value for r in range(1, ws.max_row + 1)}
-    expected = dict(base_assump, market_price=market["last_price"])
+    expected = dict(base_assump, market_price=market["price"])
     for k in ASSUMPTION_KEYS:
         assert k in sheet, f"Assumptions sheet missing {k}"
         assert isnum(sheet[k]) and abs(sheet[k] - expected[k]) <= 1e-12, f"{k}: {sheet[k]} != {expected[k]}"
@@ -507,11 +514,11 @@ PERTURBATION_NAMES = list(perturbation_cases({i: 1.0 for i in rm.required_ids()}
 
 @pytest.mark.parametrize("name", PERTURBATION_NAMES)
 def test_V8x_perturbation_matches_reference(name, gtv, base_assump, market, outputs):
-    input_changes, assump_changes = perturbation_cases(gtv, market["last_price"])[name]
+    input_changes, assump_changes = perturbation_cases(gtv, market["price"])[name]
     actual = run_perturbation(input_changes, assump_changes)
     values = dict(gtv, **input_changes)
     a = dict(base_assump, **{k: v for k, v in assump_changes.items() if k != "market_price"})
-    price = assump_changes.get("market_price", market["last_price"])
+    price = assump_changes.get("market_price", market["price"])
     expected = rm.expected_outputs(rm.model_from(values, a, price))
     bad = compare(actual, expected)
     assert not bad, f"{name}: {len(bad)} outputs do not respond as the reference predicts: {bad[:5]}"
@@ -547,7 +554,7 @@ def test_V92_summary_matches_reference(summary, ref_model):
 
 
 def test_V93_market_price_from_fixed_file(summary, market):
-    assert summary["market_price"] == market["last_price"]
+    assert summary["market_price"] == market["price"]
 
 
 # =========================================================================================
