@@ -18,7 +18,7 @@
       {
         "id": "accrued|FY-1",
         "newest": 5916.0,
-        "older_file": "aa16acd6-NKE_10K_2025.pdf.txt",
+        "older_file": "NKE_10K_2025.pdf",
         "older_value": 5911.0,
         "differs": true
       }
@@ -28,268 +28,268 @@
   "values": {
     "revenue|FY-2": {
       "value": 51362.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 56
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 55
     },
     "pretax_income|FY-2": {
       "value": 6700.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 56
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 55
     },
     "interest_net|FY-2": {
       "value": -161.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 56,
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 55,
       "note": "reported sign: negative = net interest income"
     },
     "tax_expense|FY-2": {
       "value": 1000.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 56
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 55
     },
     "depreciation|FY-2": {
       "value": 796.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 59,
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 58,
       "note": "cash-flow line 'Depreciation and amortization' (labelled 'Depreciation' in the FY2024 10-K; same values)"
     },
     "capex|FY-2": {
       "value": 812.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 59,
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 58,
       "note": "shown as a positive magnitude"
     },
     "receivables|FY-2": {
       "value": 4427.0,
-      "source_file": "aa16acd6-NKE_10K_2025.pdf.txt",
+      "source_file": "NKE_10K_2025.pdf",
       "page": 58
     },
     "inventories|FY-2": {
       "value": 7519.0,
-      "source_file": "aa16acd6-NKE_10K_2025.pdf.txt",
+      "source_file": "NKE_10K_2025.pdf",
       "page": 58
     },
     "prepaid|FY-2": {
       "value": 1854.0,
-      "source_file": "aa16acd6-NKE_10K_2025.pdf.txt",
+      "source_file": "NKE_10K_2025.pdf",
       "page": 58
     },
     "payables|FY-2": {
       "value": 2851.0,
-      "source_file": "aa16acd6-NKE_10K_2025.pdf.txt",
+      "source_file": "NKE_10K_2025.pdf",
       "page": 58
     },
     "accrued|FY-2": {
       "value": 5725.0,
-      "source_file": "aa16acd6-NKE_10K_2025.pdf.txt",
+      "source_file": "NKE_10K_2025.pdf",
       "page": 58,
       "note": "FY2025 10-K basis; excludes $6M notes payable that the FY2026 10-K folds into accrued liabilities from FY2025 onward; FY2024 not restated by the company"
     },
     "revenue|FY-1": {
       "value": 46309.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 56
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 55
     },
     "pretax_income|FY-1": {
       "value": 3885.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 56
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 55
     },
     "interest_net|FY-1": {
       "value": -107.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 56,
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 55,
       "note": "reported sign: negative = net interest income"
     },
     "tax_expense|FY-1": {
       "value": 666.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 56
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 55
     },
     "depreciation|FY-1": {
       "value": 775.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 59,
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 58,
       "note": "cash-flow line 'Depreciation and amortization' (labelled 'Depreciation' in the FY2024 10-K; same values)"
     },
     "capex|FY-1": {
       "value": 430.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 59,
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 58,
       "note": "shown as a positive magnitude"
     },
     "receivables|FY-1": {
       "value": 4717.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "inventories|FY-1": {
       "value": 7489.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "prepaid|FY-1": {
       "value": 2005.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "payables|FY-1": {
       "value": 3479.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "accrued|FY-1": {
       "value": 5916.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58,
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57,
       "note": "restated in FY2026 10-K (5,916 vs 5,911 in the FY2025 10-K)"
     },
     "revenue|FY0": {
       "value": 46398.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 56
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 55
     },
     "pretax_income|FY0": {
       "value": 3900.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 56
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 55
     },
     "interest_net|FY0": {
       "value": -50.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 56,
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 55,
       "note": "reported sign: negative = net interest income"
     },
     "tax_expense|FY0": {
       "value": 792.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 56
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 55
     },
     "depreciation|FY0": {
       "value": 747.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 59,
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 58,
       "note": "cash-flow line 'Depreciation and amortization' (labelled 'Depreciation' in the FY2024 10-K; same values)"
     },
     "capex|FY0": {
       "value": 684.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 59,
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 58,
       "note": "shown as a positive magnitude"
     },
     "receivables|FY0": {
       "value": 5931.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "inventories|FY0": {
       "value": 7501.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "prepaid|FY0": {
       "value": 2144.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "payables|FY0": {
       "value": 3600.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "accrued|FY0": {
       "value": 6092.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "cash|FY0": {
       "value": 7563.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "short_term_investments|FY0": {
       "value": 1464.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "notes_payable|FY0": {
       "value": 0.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58,
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57,
       "note": "not presented separately in the FY2026 10-K balance sheet (inferred folded into accrued liabilities)"
     },
     "current_ltd|FY0": {
       "value": 2000.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "long_term_debt|FY0": {
       "value": 5942.0,
-      "source_file": "8268d305-Nike-Inc-2026-10K.pdf.txt",
-      "page": 58
+      "source_file": "Nike-Inc-2026-10K.pdf",
+      "page": 57
     },
     "revenue|YTD_CUR": {
       "value": 11213.0,
-      "source_file": "4a98fe77-NKE_10Q_2027.pdf",
+      "source_file": "NKE_10Q_2027.pdf",
       "page": 4
     },
     "pretax_income|YTD_CUR": {
       "value": 921.0,
-      "source_file": "4a98fe77-NKE_10Q_2027.pdf",
+      "source_file": "NKE_10Q_2027.pdf",
       "page": 4
     },
     "interest_net|YTD_CUR": {
       "value": -14.0,
-      "source_file": "4a98fe77-NKE_10Q_2027.pdf",
+      "source_file": "NKE_10Q_2027.pdf",
       "page": 4,
       "note": "reported sign: negative = net interest income"
     },
     "tax_expense|YTD_CUR": {
       "value": 209.0,
-      "source_file": "4a98fe77-NKE_10Q_2027.pdf",
+      "source_file": "NKE_10Q_2027.pdf",
       "page": 4
     },
     "revenue|YTD_PRI": {
       "value": 11720.0,
-      "source_file": "4a98fe77-NKE_10Q_2027.pdf",
+      "source_file": "NKE_10Q_2027.pdf",
       "page": 4
     },
     "pretax_income|YTD_PRI": {
       "value": 922.0,
-      "source_file": "4a98fe77-NKE_10Q_2027.pdf",
+      "source_file": "NKE_10Q_2027.pdf",
       "page": 4
     },
     "interest_net|YTD_PRI": {
       "value": -18.0,
-      "source_file": "4a98fe77-NKE_10Q_2027.pdf",
+      "source_file": "NKE_10Q_2027.pdf",
       "page": 4,
       "note": "reported sign: negative = net interest income"
     },
     "tax_expense|YTD_PRI": {
       "value": 195.0,
-      "source_file": "4a98fe77-NKE_10Q_2027.pdf",
+      "source_file": "NKE_10Q_2027.pdf",
       "page": 4
     },
     "diluted_shares|YTD_CUR": {
       "value": 1484.2,
-      "source_file": "4a98fe77-NKE_10Q_2027.pdf",
+      "source_file": "NKE_10Q_2027.pdf",
       "page": 4,
       "note": "weighted-average diluted shares, three months ended Aug 31, 2026 (millions)"
     },
     "notes_payable|Q_END": {
       "value": 0.0,
-      "source_file": "4a98fe77-NKE_10Q_2027.pdf",
+      "source_file": "NKE_10Q_2027.pdf",
       "page": 6,
       "note": "not presented separately in the 10-Q balance sheet"
     },
     "current_ltd|Q_END": {
       "value": 2000.0,
-      "source_file": "4a98fe77-NKE_10Q_2027.pdf",
+      "source_file": "NKE_10Q_2027.pdf",
       "page": 6
     },
     "long_term_debt|Q_END": {
       "value": 5893.0,
-      "source_file": "4a98fe77-NKE_10Q_2027.pdf",
+      "source_file": "NKE_10Q_2027.pdf",
       "page": 6
     }
   }

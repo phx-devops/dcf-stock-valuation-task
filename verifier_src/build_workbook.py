@@ -15,7 +15,6 @@ inputs.json is ``{"values": {id: {"value": x, "source_file": "...", "page": n}}}
 """
 import argparse
 import json
-import os
 import shutil
 import subprocess
 import tempfile
@@ -60,7 +59,7 @@ def build(values, raw_assumptions, price, path):
         ("equity_risk_premium", raw_assumptions["wacc"]["equity_risk_premium"]),
         ("beta", raw_assumptions["wacc"]["beta"]),
         ("pre_tax_cost_of_debt", raw_assumptions["wacc"]["pre_tax_cost_of_debt"]),
-        ("terminal_growth_rate", raw_assumptions["terminal_value"]["growth_rate"]),
+        ("terminal_growth_rate", raw_assumptions["terminal_value"]["terminal_growth_rate"]),
         ("explicit_forecast_years", raw_assumptions["forecast"]["explicit_forecast_years"]),
         ("market_price", price),
     ]
@@ -184,8 +183,7 @@ def build(values, raw_assumptions, price, path):
 def recalc(src, dst):
     """Recalculate with LibreOffice headless and write the recalculated copy to dst."""
     work = Path(tempfile.mkdtemp(prefix="nke_build_"))
-    soffice = os.environ.get("SOFFICE", "soffice")
-    cmd = [soffice, f"-env:UserInstallation={(work / 'profile').as_uri()}", "--headless",
+    cmd = ["soffice", f"-env:UserInstallation={(work / 'profile').as_uri()}", "--headless",
            "--calc", "--convert-to", "xlsx:Calc MS Excel 2007 XML", "--outdir", str(work), str(src)]
     res = subprocess.run(cmd, capture_output=True, text=True, timeout=180)
     out = work / Path(src).name
@@ -205,7 +203,8 @@ def main():
     raw = json.loads(Path(args.inputs).read_text())
     values = raw.get("values", raw)
     assumptions = json.loads(Path(args.assumptions).read_text())
-    price = json.loads(Path(args.market).read_text())["last_price"]
+    market = json.loads(Path(args.market).read_text())
+    price = market["last_price"] if "last_price" in market else market["price"]
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 

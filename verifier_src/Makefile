@@ -1,6 +1,8 @@
 .DEFAULT_GOAL := help
 
 PYTHON ?= python3
+VENV_DIR ?= .venv
+VENV_PYTHON = $(VENV_DIR)/bin/python
 APP_DIR ?= $(abspath ../app)
 OUT_DIR ?= $(APP_DIR)/output
 INPUTS ?= $(APP_DIR)/inputs.json
@@ -15,13 +17,15 @@ SOFFICE_BIN = $(shell command -v "$(SOFFICE)" 2>/dev/null || { test -x "$(SOFFIC
 
 help:
 	@printf '%s\n' \
-		'install-dependencies  Install Python, LibreOffice, and PDF extraction dependencies' \
+		'install-dependencies  Create a Python environment and install required dependencies' \
 		'extract-inputs        Extract financial inputs from all supplied filings' \
 		'build-workbook        Build the DCF workbook and summary outputs' \
 		'test-outputs          Run the workbook output verifier'
 
 install-dependencies:
-	$(PYTHON) -m pip install openpyxl pytest
+	$(PYTHON) -m venv "$(VENV_DIR)"
+	$(VENV_PYTHON) -m pip install --upgrade pip
+	$(VENV_PYTHON) -m pip install openpyxl pytest
 	@if [ -z "$(SOFFICE_BIN)" ]; then \
 		if command -v brew >/dev/null 2>&1; then \
 			brew install --cask libreoffice; \
@@ -56,7 +60,7 @@ extract-inputs: install-dependencies
 		"$(PDFTOTEXT)" -layout "$(APP_DIR)/filings/NKE_10K_2025.pdf" "$$tmp_dir/NKE_10K_2025.txt"; \
 		"$(PDFTOTEXT)" -layout "$(APP_DIR)/filings/Nike-Inc-2026-10K.pdf" "$$tmp_dir/Nike-Inc-2026-10K.txt"; \
 		cp "$(APP_DIR)/filings/NKE_10Q_2027.pdf" "$$tmp_dir/NKE_10Q_2027.pdf"; \
-		$(PYTHON) extract_inputs.py --filings-dir "$$tmp_dir" \
+		"$(VENV_PYTHON)" extract_inputs.py --filings-dir "$$tmp_dir" \
 			--source-filings-dir "$(APP_DIR)/filings" --out "$(INPUTS)"
 
 build-workbook:
@@ -64,7 +68,7 @@ build-workbook:
 	@test -f "$(ASSUMPTIONS)" || { printf 'Missing assumptions: %s\n' "$(ASSUMPTIONS)" >&2; exit 1; }
 	@test -f "$(MARKET_DATA)" || { printf 'Missing market data: %s\n' "$(MARKET_DATA)" >&2; exit 1; }
 	@test -x "$(SOFFICE_BIN)" || { printf 'LibreOffice is missing. Run `make install-dependencies` first.\n' >&2; exit 1; }
-	SOFFICE="$(SOFFICE_BIN)" $(PYTHON) build_workbook.py \
+	SOFFICE="$(SOFFICE_BIN)" "$(VENV_PYTHON)" build_workbook.py \
 		--inputs "$(INPUTS)" \
 		--assumptions "$(ASSUMPTIONS)" \
 		--market "$(MARKET_DATA)" \
@@ -73,4 +77,4 @@ build-workbook:
 test-outputs:
 	@test -x "$(SOFFICE_BIN)" || { printf 'LibreOffice is missing. Run `make install-dependencies` first.\n' >&2; exit 1; }
 	APP_DIR="$(APP_DIR)" OUT_DIR="$(OUT_DIR)" SOFFICE="$(SOFFICE_BIN)" \
-		$(PYTHON) -m pytest -q -p no:cacheprovider test_outputs.py
+		"$(VENV_PYTHON)" -m pytest -q -p no:cacheprovider test_outputs.py

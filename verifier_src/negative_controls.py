@@ -103,6 +103,23 @@ def assumption_tampered(out_dir):
     edit_xlsx(out_dir, fn)
 
 
+def pre_restatement(out_dir):
+    """accrued|FY-1 reverts to the pre-restatement figure (5,916 -> 5,911, a -5 shift)."""
+    edit_xlsx(out_dir, lambda wb: _set_input(wb, "accrued|FY-1", -5))
+
+
+def fake_pages(out_dir):
+    """Correct values but every citation points at page 1 (memorized figures, no real source)."""
+    def fn(wb):
+        ws = wb["Inputs"]
+        for r in range(2, ws.max_row + 1):
+            ws.cell(r, 4).value = 1
+    edit_xlsx(out_dir, fn)
+
+
+REAL_ONLY = {"fake_pages"}  # needs real (non-illustrative) ground truth and the filing PDFs
+
+
 def _edit_summary(out_dir, key, factor):
     p = Path(out_dir) / "summary.json"
     d = json.loads(p.read_text())
@@ -118,6 +135,8 @@ CONTROLS = {
     "basic_not_diluted_shares": (basic_shares, ["test_V11_input_value_matches_ground_truth[diluted_shares|YTD_CUR]"]),
     "leases_in_debt": (leases_in_debt, ["test_V11_input_value_matches_ground_truth[long_term_debt|FY0]"]),
     "assumption_tampered": (assumption_tampered, ["test_V20_assumptions_sheet_matches_json"]),
+    "pre_restatement_value": (pre_restatement, ["test_V11_input_value_matches_ground_truth[accrued|FY-1]"]),
+    "fake_pages": (fake_pages, ["test_V13_cited_page_contains_value[revenue|FY0]"]),
     "summary_mismatch": (lambda d: _edit_summary(d, "value_per_share", 1.1),
                          ["test_V90_summary_matches_recalculated_workbook[value_per_share]"]),
     "market_price_not_fixed": (lambda d: _edit_summary(d, "market_price", 1.01),
@@ -134,8 +153,13 @@ def main():
     print(f"golden run 1: rc={rc1} failed={f1} [{s1}]")
     print(f"golden passes: {good}; two runs identical: {det}")
     ok &= good and det
+    gt_path = Path(os.environ.get("GT_PATH", str(HERE / "ground_truth.json")))
+    illustrative = json.loads(gt_path.read_text())["_meta"].get("illustrative", False)
     for name, (mutate, expected) in CONTROLS.items():
-        work = Path(tempfile.mkdtemp(prefix=f"nc_{name}_"))
+        if name in REAL_ONLY and illustrative:
+            print(f"[SKIP] {name}: needs the real ground truth and filing PDFs (page checks are skipped on illustrative data)")
+            continue
+        work =Path(tempfile.mkdtemp(prefix=f"nc_{name}_"))
         shutil.copy(GOLDEN / "nke_dcf.xlsx", work / "nke_dcf.xlsx")
         shutil.copy(GOLDEN / "summary.json", work / "summary.json")
         mutate(work)
